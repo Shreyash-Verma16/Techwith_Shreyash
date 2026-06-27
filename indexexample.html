@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyash Verma | Profile Workspace</title>
+    
+    <!-- Modern Tailwind CSS v4 for premium dark styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- FontAwesome CDN for authentic brand vector logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- GSAP for precise, frame-accurate animation timing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <style>
+        html, body {
+            background-color: #050505;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body.locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* 
+           FIXED: Double-stacked drop shadow ensures a massive, 
+           undeniable neon glow on the SVG lines in all browsers.
+        */
+        .glow-line {
+            filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 1)) drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.8));
+        }
+
+        .glass-card {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* SCROLL-BLUR MATRIX CLASSES */
+        .scroll-section {
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0.25;
+            filter: blur(8px);
+            transform: scale(0.96);
+        }
+
+        .scroll-section.in-focus {
+            opacity: 1;
+            filter: blur(0px);
+            transform: scale(1);
+        }
+
+        /* Hover interaction for footer links */
+        .social-link {
+            transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+        }
+        .social-link:hover {
+            transform: scale(1.15) !important;
+            filter: brightness(1.3) !important;
+            box-shadow: 0px 0px 30px var(--glow-color) !important;
+            z-index: 50;
+        }
+
+        /* =============================================
+           HEAVY BREATHING LOOP ANIMATIONS
+           ============================================= 
+        */
+        
+        /* 1. Pulses the vector paths (lines) heavily */
+        @keyframes cyber-breathe {
+            0%, 100% {
+                opacity: 0.7;
+                filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.6));
+            }
+            50% {
+                opacity: 1;
+                filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 1)) drop-shadow(0px 0px 20px rgba(255, 255, 255, 1));
+            }
+        }
+        .breathing-root {
+            animation: cyber-breathe 3.5s infinite ease-in-out;
+        }
+
+        /* 2. Pulses the colored social icons using heavy Box Shadow */
+        @keyframes icon-breathe {
+            0%, 100% {
+                box-shadow: 0px 0px 10px var(--glow-color);
+            }
+            50% {
+                box-shadow: 0px 0px 25px var(--glow-color), 0px 0px 40px var(--glow-color);
+            }
+        }
+        .breathing-icon {
+            animation: icon-breathe 3.5s infinite ease-in-out;
+        }
+
+        /* 3. Pulses the Center Shreyash Verse Logo */
+        @keyframes center-breathe {
+            0%, 100% {
+                box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.9), 0px 0px 15px rgba(100, 200, 255, 0.4);
+            }
+        }
+        .breathing-center {
+            animation: center-breathe 3.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="locked">
+
+    <!-- ============================================== -->
+    <!-- PRE-LOADER CANVAS OVERLAY (Intro Animation)    -->
+    <!-- ============================================== -->
+    <div id="loader-canvas" class="fixed inset-0 z-50 flex items-center justify-center bg-[#050505] select-none">
+        
+        <div class="relative flex items-center justify-center w-[800px] h-[800px] scale-75 sm:scale-100 transition-transform duration-300">
+            
+            <h1 id="greeting-text" class="text-4xl sm:text-5xl font-extralight tracking-wide text-white/90 opacity-0 absolute z-10">
+                Hey 👋
+            </h1>
+
+            <svg class="absolute w-full h-full pointer-events-none z-10" viewBox="0 0 800 800" fill="none">
+                <path id="flow-path" class="glow-line" d="M 400,410 C 550,200 700,250 650,400 C 600,550 200,650 150,450 C 100,250 300,350 400,400" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+                <g id="base-roots">
+                    <path class="root-base" d="M 400,400 L 400,180" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 555,245" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 620,400" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 555,555" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 400,620" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 245,555" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 180,400" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="root-base" d="M 400,400 L 245,245" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                </g>
+
+                <g id="fluid-roots">
+                    <path class="root-fluid glow-line" d="M 400,400 L 400,180" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 555,245" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 620,400" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 555,555" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 400,620" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 245,555" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 180,400" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="root-fluid glow-line" d="M 400,400 L 245,245" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+            </svg>
+
+            <div id="channel-logo" class="absolute w-28 h-28 rounded-full border border-white/20 bg-neutral-900 flex items-center justify-center scale-0 opacity-0 z-20 shadow-[0_0_35px_rgba(255,255,255,0.8)] overflow-hidden">
+                <img src="https://i.ibb.co/mrk9d9TV/channels4-profile.jpg" alt="Shreyash Verse Logo" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Intro Logos (Solid colors restored, heavy box-shadow added) -->
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(0px, -220px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#ff0000] text-white text-xl shadow-[0_0_20px_rgba(255,0,0,1)]"><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(155px, -155px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white text-xl shadow-[0_0_20px_rgba(238,42,123,1)]"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(220px, 0px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#0077b5] text-white text-xl shadow-[0_0_20px_rgba(0,119,181,1)]"><i class="fab fa-linkedin-in"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(155px, 155px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#24292e] border border-white/10 text-white text-xl shadow-[0_0_20px_rgba(255,255,255,0.6)]"><i class="fab fa-github"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(0px, 220px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#f05032] text-white text-xl shadow-[0_0_20px_rgba(240,80,50,1)]"><i class="fas fa-code-branch"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(-155px, 155px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-white/20 text-white text-base shadow-[0_0_20px_rgba(255,255,255,0.6)]"><i class="fab fa-x-twitter"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(-220px, 0px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-neutral-800 text-white text-xl shadow-[0_0_20px_rgba(255,255,255,0.4)]"><i class="fab fa-threads"></i></div>
+            </div>
+            <div class="logo-wrapper absolute z-30 flex items-center justify-center" style="transform: translate(-155px, -155px);">
+                <div class="platform-logo scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#ff4500] text-white text-xl shadow-[0_0_20px_rgba(255,69,0,1)]"><i class="fab fa-reddit-alien"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MAIN WEBPAGE LAYER (Content)                   -->
+    <!-- ============================================== -->
+    <main id="main-content" class="opacity-0 flex flex-col items-center justify-start pt-32 pb-0 px-4 max-w-4xl mx-auto z-0 overflow-x-hidden">
+        
+        <header class="fixed top-0 left-0 right-0 h-20 glass-card z-40 px-6 flex justify-between items-center border-b border-white/5">
+            <div class="text-xs font-bold tracking-widest text-neutral-400">SHREYASH VERSE</div>
+            <div class="w-9 h-9 rounded-full overflow-hidden border border-white/10">
+                <img src="https://i.ibb.co/mrk9d9TV/channels4-profile.jpg" alt="Profile Thumbnail" class="w-full h-full object-cover">
+            </div>
+        </header>
+
+        <!-- PROFILE CHAPTERS -->
+        <div class="w-full flex flex-col gap-32 mt-12 mb-32">
+            
+            <section class="scroll-section glass-card p-8 rounded-2xl flex flex-col gap-4">
+                <span class="text-xs font-semibold tracking-widest text-blue-400 uppercase">✨ About Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Shreyash Verma — A Complete Profile</h2>
+                <p class="text-neutral-300 leading-relaxed font-light text-sm sm:text-base">
+                    My name is Shreyash Verma, and I am a student, creator, and explorer of ideas who lives in Mathura, Uttar Pradesh. I am currently pursuing a Bachelor of Computer Applications (BCA) at Rajiv Academy, where I am part of the 2025–28 batch. My life is a blend of academics and creativity: on one side, I dive deep into programming, mathematics, and computer science fundamentals; on the other, I create digital content that simplifies technology for everyday users.
+                </p>
+                <p class="text-neutral-300 leading-relaxed font-light text-sm sm:text-base">
+                    I see myself as someone who thrives on clarity and directness. I prefer honest feedback over empty validation, because growth comes from being challenged. My communication style is rational and unfiltered, which helps me both in my studies and in my content creation.
+                </p>
+            </section>
+
+            <section class="scroll-section glass-card p-8 rounded-2xl flex flex-col gap-4">
+                <span class="text-xs font-semibold tracking-widest text-red-400 uppercase">🎥 Content Creation Journey</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Mastering Short-Form Tech</h2>
+                <p class="text-neutral-300 leading-relaxed font-light text-sm sm:text-base">
+                    Content creation is not just a hobby for me; it is a second identity. I run a YouTube channel called Shreyash Verse, which currently has over 80 subscribers and more than 60 videos. My channel focuses on short‑form vertical content, mostly YouTube Shorts, where I explain smartphone tips, hidden features, buying guides, and comparisons in simple, beginner‑friendly language.
+                </p>
+                <p class="text-neutral-300 leading-relaxed font-light text-sm sm:text-base">
+                    What makes my content stand out is my focus on audience retention. I experiment with hooks, pacing, and storytelling structures to keep viewers engaged from start to finish. I also embrace AI as a creative partner. I use AI tools for scripting, thumbnail design, and image enhancement.
+                </p>
+            </section>
+
+            <section class="scroll-section glass-card p-8 rounded-2xl flex flex-col gap-4">
+                <span class="text-xs font-semibold tracking-widest text-emerald-400 uppercase">📚 Academic Studies</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">The Architecture of Logic</h2>
+                <p class="text-neutral-300 leading-relaxed font-light text-sm sm:text-base mb-2">
+                    Parallel to my content creation journey, I am building a strong academic foundation in computer applications. My BCA program covers programming, mathematics, and computer science fundamentals.
+                </p>
+                <ul class="space-y-4 text-sm sm:text-base font-light text-neutral-400">
+                    <li><strong class="text-white font-semibold">Programming:</strong> I have a strong interest in Java and Object‑Oriented Programming (OOP) concepts.</li>
+                    <li><strong class="text-white font-semibold">Mathematics:</strong> I explore topics like limits, continuity, Rolle’s theorem, and trigonometry.</li>
+                    <li><strong class="text-white font-semibold">Hardware Knowledge:</strong> Practical understanding of PC hardware basics, including refresh rates, VSync, and GPU VRAM.</li>
+                </ul>
+            </section>
+
+            <section class="scroll-section glass-card p-8 rounded-2xl flex flex-col gap-4">
+                <span class="text-xs font-semibold tracking-widest text-purple-400 uppercase">🌐 Personal Interests & Lifestyle</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Beyond The Screen</h2>
+                <ul class="space-y-4 text-sm sm:text-base font-light text-neutral-400">
+                    <li><strong class="text-white font-semibold">Sports Economics:</strong> I enjoy analyzing the economics of global sports, especially comparing the IPL with football leagues worldwide.</li>
+                    <li><strong class="text-white font-semibold">Gaming:</strong> I am a casual gamer who enjoys Free Fire and emulator gaming.</li>
+                    <li><strong class="text-white font-semibold">Style & Music:</strong> I prefer clean, modern outfit styling. My playlist includes artists like The Weeknd, Lana Del Rey, Anuv Jain, and Zayn Malik.</li>
+                </ul>
+            </section>
+
+            <section class="scroll-section glass-card p-8 rounded-2xl flex flex-col gap-4">
+                <span class="text-xs font-semibold tracking-widest text-neutral-500 uppercase">📝 Closing Reflection</span>
+                <p class="text-neutral-200 leading-relaxed font-light text-lg sm:text-xl text-center italic">
+                    "In summary, I am not just a student or a creator — I am a blend of both. My academic journey in computer applications gives me technical depth, while my content creation journey gives me creative reach. I want to learn, create, and share knowledge in ways that are simple, engaging, and impactful."
+                </p>
+            </section>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- INTERACTIVE FOOTER NETWORK (Permanent Loop)    -->
+        <!-- ============================================== -->
+        <footer id="footer-network" class="w-screen relative flex flex-col items-center justify-center py-48 border-t border-white/10 bg-[#020202]">
+            <h3 class="text-sm font-semibold text-neutral-500 mb-10 tracking-[0.3em] uppercase z-40 text-center">Connect Across The Verse</h3>
+            
+            <div class="relative flex items-center justify-center w-[800px] h-[800px] scale-50 sm:scale-75">
+                
+                <svg class="absolute w-full h-full pointer-events-none z-10" viewBox="0 0 800 800" fill="none">
+                    
+                    <path id="footer-flow-path" class="glow-line" d="M 400,410 C 550,200 700,250 650,400 C 600,550 200,650 150,450 C 100,250 300,350 400,400" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+                    <g id="footer-base-roots">
+                        <path class="f-root-base" d="M 400,400 L 400,180" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 555,245" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 620,400" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 555,555" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 400,620" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 245,555" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 180,400" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                        <path class="f-root-base" d="M 400,400 L 245,245" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
+
+                    <g id="footer-fluid-roots">
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 400,180" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 555,245" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 620,400" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 555,555" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 400,620" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 245,555" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 180,400" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <path class="f-root-fluid glow-line" d="M 400,400 L 245,245" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+                </svg>
+
+                <div id="footer-channel-logo" class="absolute w-28 h-28 rounded-full border border-white/20 bg-neutral-900 flex items-center justify-center scale-0 opacity-0 z-20 shadow-[0_0_35px_rgba(255,255,255,0.8)] overflow-hidden">
+                    <img src="https://i.ibb.co/mrk9d9TV/channels4-profile.jpg" alt="Shreyash Verse Logo" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Footer Links (Solid Backgrounds Restored + Heavy Breathing Glow applied via CSS variables) -->
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(0px, -220px);">
+                    <a href="YOUR_YOUTUBE_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#ff0000] text-white text-xl" style="--glow-color: rgba(255,0,0,1);"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(155px, -155px);">
+                    <a href="YOUR_INSTAGRAM_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white text-xl" style="--glow-color: rgba(238,42,123,1);"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(220px, 0px);">
+                    <a href="YOUR_LINKEDIN_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#0077b5] text-white text-xl" style="--glow-color: rgba(0,119,181,1);"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(155px, 155px);">
+                    <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#24292e] border border-white/10 text-white text-xl" style="--glow-color: rgba(255,255,255,0.7);"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(0px, 220px);">
+                    <a href="YOUR_GIT_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#f05032] text-white text-xl" style="--glow-color: rgba(240,80,50,1);"><i class="fas fa-code-branch"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(-155px, 155px);">
+                    <a href="YOUR_TWITTER_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-white/20 text-white text-base" style="--glow-color: rgba(255,255,255,0.7);"><i class="fab fa-x-twitter"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(-220px, 0px);">
+                    <a href="YOUR_THREADS_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-black border border-neutral-800 text-white text-xl" style="--glow-color: rgba(255,255,255,0.5);"><i class="fab fa-threads"></i></a>
+                </div>
+                <div class="absolute z-30 flex items-center justify-center" style="transform: translate(-155px, -155px);">
+                    <a href="YOUR_REDDIT_LINK_HERE" target="_blank" class="social-link scale-0 opacity-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#ff4500] text-white text-xl" style="--glow-color: rgba(255,69,0,1);"><i class="fab fa-reddit-alien"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- ENGINE SCRIPT WITH ANIMATION & OBSERVERS -->
+    <script>
+        // PART 1: THE GSAP INTRO ANIMATION
+        const flowPath = document.querySelector("#flow-path");
+        const flowLength = flowPath.getTotalLength();
+        const baseRoots = document.querySelectorAll(".root-base");
+        const fluidRoots = document.querySelectorAll(".root-fluid");
+
+        gsap.set(flowPath, { strokeDasharray: flowLength, strokeDashoffset: flowLength });
+        baseRoots.forEach(path => gsap.set(path, { strokeDasharray: path.getTotalLength(), strokeDashoffset: path.getTotalLength() }));
+        fluidRoots.forEach(path => gsap.set(path, { strokeDasharray: path.getTotalLength(), strokeDashoffset: path.getTotalLength() }));
+
+        const masterTimeline = gsap.timeline();
+
+        masterTimeline
+            .to("#greeting-text", { opacity: 1, y: -10, duration: 1.0, ease: "power2.out", delay: 0.5 })
+            .to("#greeting-text", { opacity: 0, scale: 0.7, letterSpacing: "-0.03em", duration: 0.6, ease: "power3.in", delay: 1.5 }, "collapseAndFlow")
+            .to(flowPath, { strokeDashoffset: 0, duration: 1.8, ease: "power2.inOut" }, "collapseAndFlow+=0.2")
+            .to(flowPath, { opacity: 0, duration: 0.1 })
+            .to("#channel-logo", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.2)" }, "-=0.1")
+            
+            .add("rootsStart", "+=0.2")
+            .to(baseRoots, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out", stagger: 0.04 }, "rootsStart")
+            .add("fluidStart", "rootsStart+=1.0")
+            .to(fluidRoots, { strokeDashoffset: 0, duration: 0.8, ease: "power1.inOut", stagger: 0.04 }, "fluidStart")
+            .add("logosPop", "fluidStart+=0.6")
+            .to(".platform-logo", { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.5)", stagger: 0.03 }, "logosPop")
+            
+            .add("holdZone", "+=2.5") 
+            .to(fluidRoots, { strokeDashoffset: function(i, el) { return el.getTotalLength(); }, duration: 0.7, ease: "power2.inOut", stagger: 0.02 }, "holdZone")
+            .to(".logo-wrapper", { x: 0, y: 0, duration: 0.7, ease: "power2.inOut", stagger: 0.02 }, "holdZone")
+            .to(baseRoots, { strokeDashoffset: function(i, el) { return el.getTotalLength(); }, duration: 0.7, ease: "power2.inOut", stagger: 0.02 }, "holdZone+=0.1")
+            .to(".platform-logo", { scale: 0, opacity: 0, duration: 0.3, ease: "power2.in", stagger: 0.02 }, "holdZone+=0.4")
+            
+            .add("uiReveal", "holdZone+=0.8")
+            .to("#channel-logo", { scale: 2.5, opacity: 0, duration: 1.0, ease: "power4.inOut" }, "uiReveal")
+            .to("#loader-canvas", { backdropFilter: "blur(30px)", background: "rgba(5, 5, 5, 0)", opacity: 0, duration: 1.2, display: "none", ease: "power3.inOut", onComplete: function() { document.body.classList.remove("locked"); } }, "uiReveal")
+            .to("#main-content", { opacity: 1, duration: 1.2, ease: "power2.out" }, "uiReveal+=0.4");
+
+        // PART 2: THE SCROLL-BLUR INTERSECTION OBSERVER
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-focus');
+                } else {
+                    entry.target.classList.remove('in-focus');
+                }
+            });
+        }, { threshold: 0.4, rootMargin: "-15% 0px -15% 0px" });
+
+        document.querySelectorAll('.scroll-section').forEach((section) => {
+            scrollObserver.observe(section);
+        });
+
+        // PART 3: THE FOOTER NETWORK ANIMATION (Clean, Untangled, Glowing)
+        const footerFlowPath = document.querySelector("#footer-flow-path");
+        const footerBaseRoots = document.querySelectorAll(".f-root-base");
+        const footerFluidRoots = document.querySelectorAll(".f-root-fluid");
+        
+        gsap.set(footerFlowPath, { strokeDasharray: footerFlowPath.getTotalLength(), strokeDashoffset: footerFlowPath.getTotalLength() });
+        footerBaseRoots.forEach(path => gsap.set(path, { strokeDasharray: path.getTotalLength(), strokeDashoffset: path.getTotalLength() }));
+        footerFluidRoots.forEach(path => gsap.set(path, { strokeDasharray: path.getTotalLength(), strokeDashoffset: path.getTotalLength() }));
+
+        let footerAnimated = false; 
+        
+        const footerObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !footerAnimated) {
+                footerAnimated = true;
+                
+                const footerTl = gsap.timeline({
+                    onComplete: () => {
+                        // Activate the breathing loops on the light, icons, and center logo
+                        footerFluidRoots.forEach(path => path.classList.add('breathing-root'));
+                        document.querySelectorAll(".social-link").forEach(icon => icon.classList.add('breathing-icon'));
+                        document.querySelector("#footer-channel-logo").classList.add('breathing-center');
+                    }
+                });
+                
+                footerTl.to(footerFlowPath, { strokeDashoffset: 0, duration: 1.8, ease: "power2.inOut" })
+                .to("#footer-channel-logo", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.2)" }, "-=0.2")
+                .to(footerFlowPath, { opacity: 0, duration: 0.5 }, "-=0.2") 
+                .add("footerRoots", "+=0.2")
+                .to(footerBaseRoots, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out", stagger: 0.04 }, "footerRoots")
+                .add("footerFluid", "footerRoots+=1.0")
+                .to(footerFluidRoots, { strokeDashoffset: 0, duration: 0.8, ease: "power1.inOut", stagger: 0.04 }, "footerFluid")
+                .add("footerPop", "footerFluid+=0.6")
+                .to(".social-link", { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)", stagger: 0.04 }, "footerPop");
+            }
+        }, { threshold: 0.4 }); 
+
+        footerObserver.observe(document.querySelector("#footer-network"));
+
+    </script>
+
+</body>
+</html>
